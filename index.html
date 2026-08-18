@@ -2,816 +2,1101 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#ffffff">
-<title>PlayZone - Free Online Games</title>
+<title>PlayZone - Free Games</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{box-sizing:border-box}
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f6f8;
-  color:#17191c;
-  min-height:100vh;
+ margin:0;
+ font-family:Arial,Helvetica,sans-serif;
+ background:#f5f6f8;
+ color:#17191c
 }
 button,input{font:inherit}
-button{cursor:pointer;border:0}
+button{cursor:pointer}
 
-.topbar{
-  height:68px;
-  background:#fff;
-  border-bottom:1px solid #e7e8eb;
-  display:flex;
-  align-items:center;
-  gap:22px;
-  padding:0 28px;
-  position:sticky;
-  top:0;
-  z-index:100;
+header{
+ position:sticky;
+ top:0;
+ z-index:100;
+ background:#fff;
+ border-bottom:1px solid #e5e5e5;
+ min-height:68px;
+ display:flex;
+ align-items:center;
+ gap:18px;
+ padding:12px 25px
 }
 .logo{
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:-1px;
-  white-space:nowrap;
+ font-size:25px;
+ font-weight:900;
+ white-space:nowrap
 }
 .logo span{color:#ff3d7f}
 
 .search{
-  flex:1;
-  max-width:620px;
-  position:relative;
+ flex:1;
+ max-width:650px;
+ position:relative
 }
 .search input{
-  width:100%;
-  height:44px;
-  border:1px solid #dddfe3;
-  border-radius:24px;
-  padding:0 48px 0 18px;
-  outline:none;
-  background:#f6f7f9;
-  transition:.2s;
+ width:100%;
+ height:44px;
+ border:1px solid #ddd;
+ border-radius:24px;
+ background:#f5f6f8;
+ padding:0 45px 0 18px;
+ outline:none
 }
 .search input:focus{
-  background:white;
-  border-color:#b9bdc5;
+ background:#fff;
+ border-color:#aaa
 }
 .search-icon{
-  position:absolute;
-  right:16px;
-  top:12px;
-  font-size:19px;
+ position:absolute;
+ right:16px;
+ top:11px;
+ font-size:20px
 }
-.top-actions{
-  margin-left:auto;
-  display:flex;
-  gap:9px;
+
+.header-buttons{
+ margin-left:auto;
+ display:flex;
+ gap:8px
 }
-.top-btn{
-  background:#f1f2f4;
-  border-radius:12px;
-  padding:10px 14px;
-  font-weight:700;
+.header-buttons button{
+ border:0;
+ background:#f0f1f3;
+ padding:10px 14px;
+ border-radius:12px;
+ font-weight:700
 }
-.top-btn:hover{background:#e7e8eb}
 
 .hero{
-  max-width:1400px;
-  margin:24px auto 0;
-  padding:0 24px;
+ max-width:1400px;
+ margin:22px auto;
+ padding:0 20px
 }
-.hero-card{
-  min-height:280px;
-  border-radius:24px;
-  overflow:hidden;
-  position:relative;
-  display:flex;
-  align-items:center;
-  padding:42px;
-  background:
-    radial-gradient(circle at 85% 20%,#ffdfef 0 12%,transparent 30%),
-    linear-gradient(135deg,#ffffff,#f0f1ff);
-  border:1px solid #e4e5e9;
-}
-.hero-text{
-  max-width:600px;
-  position:relative;
-  z-index:2;
+.hero-box{
+ min-height:270px;
+ border:1px solid #e5e5e5;
+ border-radius:24px;
+ background:linear-gradient(135deg,#fff,#f0f1ff);
+ padding:40px;
+ display:flex;
+ align-items:center;
+ overflow:hidden;
+ position:relative
 }
 .hero h1{
-  font-size:48px;
-  line-height:1;
-  letter-spacing:-2px;
-  margin-bottom:16px;
+ margin:0 0 14px;
+ font-size:48px;
+ letter-spacing:-2px
 }
 .hero p{
-  color:#666b74;
-  font-size:17px;
-  line-height:1.5;
-  margin-bottom:22px;
+ max-width:570px;
+ color:#666;
+ line-height:1.5;
+ font-size:17px
 }
-.play-featured{
-  background:#17191c;
-  color:white;
-  padding:14px 23px;
-  border-radius:13px;
-  font-weight:800;
+.hero button{
+ background:#17191c;
+ color:#fff;
+ border:0;
+ padding:14px 22px;
+ border-radius:12px;
+ font-weight:bold
 }
-.play-featured:hover{transform:translateY(-2px)}
-
 .hero-art{
-  position:absolute;
-  right:55px;
-  width:310px;
-  height:220px;
+ position:absolute;
+ right:70px;
+ width:260px;
+ height:210px
 }
-.orb{
-  position:absolute;
-  border-radius:50%;
+.ball{
+ position:absolute;
+ border-radius:50%
 }
-.orb.one{
-  width:170px;height:170px;
-  background:#ff4d8d;
-  right:45px;top:25px;
+.b1{
+ width:150px;height:150px;
+ background:#ff4d8d;
+ right:35px;top:20px
 }
-.orb.two{
-  width:105px;height:105px;
-  background:#6c63ff;
-  right:175px;top:82px;
+.b2{
+ width:90px;height:90px;
+ background:#6c63ff;
+ right:150px;top:85px
 }
-.orb.three{
-  width:75px;height:75px;
-  background:#ffc857;
-  right:5px;top:130px;
-}
-.art-face{
-  position:absolute;
-  width:95px;height:95px;
-  background:white;
-  border-radius:50%;
-  right:82px;top:62px;
-  box-shadow:0 12px 35px #0002;
-}
-.art-face:before{
-  content:"•  •";
-  position:absolute;
-  top:27px;
-  left:27px;
-  font-size:23px;
-  letter-spacing:15px;
-}
-.art-face:after{
-  content:"⌣";
-  position:absolute;
-  left:34px;
-  top:44px;
-  font-size:28px;
+.b3{
+ width:70px;height:70px;
+ background:#ffc857;
+ right:0;top:125px
 }
 
 .categories{
-  max-width:1400px;
-  margin:22px auto 0;
-  padding:0 24px;
+ max-width:1400px;
+ margin:auto;
+ padding:0 20px
 }
-.category-scroll{
-  display:flex;
-  gap:9px;
-  overflow-x:auto;
-  padding-bottom:5px;
+.category-list{
+ display:flex;
+ gap:9px;
+ overflow-x:auto;
+ padding:4px 0 10px
 }
-.category-scroll::-webkit-scrollbar{display:none}
-.cat{
-  flex:none;
-  background:white;
-  border:1px solid #e2e3e7;
-  padding:10px 16px;
-  border-radius:22px;
-  font-weight:700;
+.category-list::-webkit-scrollbar{display:none}
+.category{
+ flex:none;
+ border:1px solid #ddd;
+ background:#fff;
+ padding:10px 17px;
+ border-radius:22px;
+ font-weight:bold
 }
-.cat.active,.cat:hover{
-  background:#17191c;
-  color:white;
-  border-color:#17191c;
-}
-
-.content{
-  max-width:1400px;
-  margin:30px auto;
-  padding:0 24px 60px;
-}
-.section-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin:30px 0 15px;
-}
-.section-title h2{
-  font-size:24px;
-  letter-spacing:-.5px;
-}
-.count{
-  color:#777;
-  font-size:14px;
+.category.active{
+ background:#17191c;
+ color:#fff;
+ border-color:#17191c
 }
 
-.games-grid{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:14px;
+main{
+ max-width:1400px;
+ margin:15px auto;
+ padding:0 20px 60px
 }
-.game-card{
-  background:#fff;
-  border:1px solid #e5e6e9;
-  border-radius:16px;
-  overflow:hidden;
-  position:relative;
-  transition:.18s;
-  cursor:pointer;
+.title{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin:20px 0 15px
 }
-.game-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 30px #00000012;
+.title h2{margin:0;font-size:24px}
+#count{color:#777;font-size:14px}
+
+.games{
+ display:grid;
+ grid-template-columns:repeat(6,1fr);
+ gap:14px
 }
-.thumb{
-  aspect-ratio:1/1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:52px;
-  position:relative;
-  overflow:hidden;
+.game{
+ background:#fff;
+ border:1px solid #e3e3e3;
+ border-radius:16px;
+ overflow:hidden;
+ cursor:pointer;
+ transition:.18s;
+ position:relative
 }
-.thumb:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg,#ffffff18,transparent 60%);
+.game:hover{
+ transform:translateY(-4px);
+ box-shadow:0 12px 28px #0001
+}
+.thumbnail{
+ aspect-ratio:1;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:52px
 }
 .game-info{
-  padding:11px 12px 13px;
+ padding:11px 12px 13px
 }
 .game-name{
-  font-weight:800;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+ font-weight:800;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis
 }
 .game-category{
-  font-size:12px;
-  color:#858991;
-  margin-top:4px;
+ color:#858585;
+ font-size:12px;
+ margin-top:5px
 }
-.fav{
-  position:absolute;
-  top:8px;
-  right:8px;
-  z-index:3;
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  background:#ffffffd9;
-  font-size:18px;
+.favorite{
+ position:absolute;
+ right:8px;
+ top:8px;
+ width:34px;
+ height:34px;
+ border:0;
+ border-radius:50%;
+ background:#ffffffe8;
+ font-size:19px;
+ z-index:2
 }
-.fav.active{color:#ff3d7f}
+.favorite.on{color:#ff3d7f}
 
-.empty{
-  text-align:center;
-  padding:60px 20px;
-  color:#777;
-  display:none;
-}
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:#101114;
-  z-index:500;
-  display:none;
-  flex-direction:column;
-}
-.modal.show{display:flex}
-.game-header{
-  height:58px;
-  background:#17191c;
-  color:white;
-  display:flex;
-  align-items:center;
-  padding:0 15px;
-  gap:12px;
-}
-.game-title{
-  font-weight:800;
-  flex:1;
-}
-.close-game,.full-game{
-  background:#2b2e33;
-  color:white;
-  border-radius:9px;
-  padding:9px 13px;
-}
-.game-area{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-  overflow:hidden;
-}
-#gameCanvas{
-  width:min(100%,1000px);
-  max-height:calc(100vh - 100px);
-  aspect-ratio:16/9;
-  background:#111;
-  border-radius:12px;
-  touch-action:none;
-}
-
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:24px;
-  transform:translateX(-50%) translateY(20px);
-  background:#17191c;
-  color:white;
-  padding:12px 18px;
-  border-radius:12px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  z-index:1000;
-  font-weight:700;
-}
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
+.no-results{
+ display:none;
+ text-align:center;
+ padding:70px 20px;
+ color:#777
 }
 
 footer{
-  background:white;
-  border-top:1px solid #e4e5e8;
-  padding:30px 24px;
-  text-align:center;
-  color:#777;
+ background:#fff;
+ border-top:1px solid #ddd;
+ text-align:center;
+ padding:30px;
+ color:#777
 }
-footer strong{color:#17191c}
+
+/* GAME */
+.modal{
+ position:fixed;
+ inset:0;
+ z-index:999;
+ background:#101114;
+ display:none;
+ flex-direction:column
+}
+.modal.open{display:flex}
+.gamebar{
+ height:60px;
+ background:#17191c;
+ color:#fff;
+ display:flex;
+ align-items:center;
+ padding:0 14px;
+ gap:12px
+}
+.gamebar button{
+ background:#303238;
+ color:#fff;
+ border:0;
+ padding:9px 13px;
+ border-radius:9px
+}
+.game-title{
+ flex:1;
+ font-weight:bold
+}
+.game-area{
+ flex:1;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ padding:12px
+}
+canvas{
+ width:min(100%,1000px);
+ max-height:calc(100vh - 90px);
+ aspect-ratio:16/9;
+ background:#111;
+ border-radius:12px;
+ touch-action:none
+}
 
 @media(max-width:1100px){
-  .games-grid{grid-template-columns:repeat(5,1fr)}
+ .games{grid-template-columns:repeat(5,1fr)}
 }
 @media(max-width:850px){
-  .games-grid{grid-template-columns:repeat(4,1fr)}
-  .hero h1{font-size:38px}
-  .hero-art{opacity:.35;right:-50px}
+ .games{grid-template-columns:repeat(4,1fr)}
+ .hero-art{opacity:.25;right:-40px}
+ .hero h1{font-size:40px}
 }
-@media(max-width:620px){
-  .topbar{
-    height:auto;
-    padding:12px;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-  .logo{font-size:22px}
-  .search{order:3;flex-basis:100%;max-width:none}
-  .top-actions{margin-left:auto}
-  .top-btn{padding:8px 10px}
-  .hero{padding:0 12px}
-  .hero-card{padding:28px;min-height:270px}
-  .hero h1{font-size:34px}
-  .hero-art{display:none}
-  .categories{padding:0 12px}
-  .content{padding:0 12px 40px}
-  .games-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
-  .thumb{font-size:43px}
-}
-
-/* GAME UI */
-.game-ui{
-  position:absolute;
-  color:white;
-  font-weight:800;
-  pointer-events:none;
+@media(max-width:600px){
+ header{
+  flex-wrap:wrap;
+  padding:11px 12px
+ }
+ .search{
+  order:3;
+  flex-basis:100%
+ }
+ .hero{padding:0 12px}
+ .hero-box{padding:28px;min-height:250px}
+ .hero h1{font-size:34px}
+ .hero-art{display:none}
+ .categories,main{padding-left:12px;padding-right:12px}
+ .games{
+  grid-template-columns:repeat(2,1fr);
+  gap:10px
+ }
+ .thumbnail{font-size:43px}
+ .header-buttons button{
+  padding:8px 10px
+ }
 }
 </style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="logo">Play<span>Zone</span></div>
+<header>
 
-  <div class="search">
-    <input id="searchInput" type="search" placeholder="Search games...">
-    <span class="search-icon">⌕</span>
-  </div>
+<div class="logo">Play<span>Zone</span></div>
 
-  <div class="top-actions">
-    <button class="top-btn" id="randomBtn">🎲 Random</button>
-    <button class="top-btn" id="favBtn">❤️ Favorites</button>
-  </div>
+<div class="search">
+<input id="search" type="search" placeholder="Search games...">
+<span class="search-icon">⌕</span>
+</div>
+
+<div class="header-buttons">
+<button id="random">🎲 Random</button>
+<button id="favoritesButton">❤️ Favorites</button>
+</div>
+
 </header>
 
 <section class="hero">
-  <div class="hero-card">
-    <div class="hero-text">
-      <h1>Play something fun.</h1>
-      <p>
-        Free browser games, instant play and no complicated downloads.
-        Pick a game and start playing.
-      </p>
-      <button class="play-featured" onclick="openGame(0)">▶ Play Featured</button>
-    </div>
 
-    <div class="hero-art">
-      <div class="orb one"></div>
-      <div class="orb two"></div>
-      <div class="orb three"></div>
-      <div class="art-face"></div>
-    </div>
-  </div>
+<div class="hero-box">
+
+<div>
+<h1>Play something fun.</h1>
+
+<p>
+Free browser games, instant play and simple gaming.
+Choose any game below and start playing.
+</p>
+
+<button id="featured">▶ Play Featured</button>
+</div>
+
+<div class="hero-art">
+<div class="ball b1"></div>
+<div class="ball b2"></div>
+<div class="ball b3"></div>
+</div>
+
+</div>
+
 </section>
 
 <section class="categories">
-  <div class="category-scroll" id="categories"></div>
+<div class="category-list" id="categories"></div>
 </section>
 
-<main class="content">
+<main>
 
-  <div class="section-title">
-    <h2>🔥 Popular Games</h2>
-    <span class="count" id="gameCount"></span>
-  </div>
+<div class="title">
+<h2>🔥 Popular Games</h2>
+<span id="count"></span>
+</div>
 
-  <div class="games-grid" id="gamesGrid"></div>
+<div class="games" id="games"></div>
 
-  <div class="empty" id="empty">
-    <div style="font-size:45px">🔎</div>
-    <h3>No games found</h3>
-    <p>Try another search or category.</p>
-  </div>
+<div class="no-results" id="noResults">
+<div style="font-size:50px">🔎</div>
+<h2>No games found</h2>
+<p>Try another search or category.</p>
+</div>
 
 </main>
 
 <footer>
-  <strong>PlayZone</strong> — Free browser gaming playground<br>
-  <small>Original game portal • Built for GitHub Pages</small>
+<strong>PlayZone</strong> — Free Browser Games
+<br>
+<small>Original gaming portal</small>
 </footer>
 
-<div class="toast" id="toast"></div>
+<!-- GAME WINDOW -->
 
-<!-- GAME MODAL -->
-<div class="modal" id="gameModal">
+<div class="modal" id="modal">
 
-  <div class="game-header">
-    <button class="close-game" onclick="closeGame()">← Back</button>
-    <div class="game-title" id="gameTitle">Game</div>
-    <button class="full-game" onclick="fullscreenGame()">⛶ Fullscreen</button>
-  </div>
+<div class="gamebar">
+<button id="back">← Back</button>
+<div class="game-title" id="gameTitle">Game</div>
+<button id="fullscreen">⛶ Fullscreen</button>
+</div>
 
-  <div class="game-area">
-    <canvas id="gameCanvas" width="960" height="540"></canvas>
-  </div>
+<div class="game-area">
+<canvas id="canvas" width="960" height="540"></canvas>
+</div>
 
 </div>
 
 <script>
 
-/* =========================================================
-   GAME DATABASE
-   100+ ORIGINAL GAME ENTRIES
-   ========================================================= */
+/* ================================
+   GAME DATA
+================================ */
 
-const games = [
- {n:"Metro Dash",c:"Action",e:"🏃",t:"runner"},
- {n:"Neon Racer",c:"Racing",e:"🏎️",t:"racer"},
- {n:"Block Blast",c:"Puzzle",e:"🧱",t:"click"},
- {n:"Fruit Catcher",c:"Arcade",e:"🍎",t:"catch"},
- {n:"Sky Jump",c:"Arcade",e:"☁️",t:"jump"},
- {n:"Space Defender",c:"Action",e:"🚀",t:"space"},
- {n:"Bubble Pop",c:"Puzzle",e:"🫧",t:"bubble"},
- {n:"Pixel Snake",c:"Arcade",e:"🐍",t:"snake"},
- {n:"Coin Rush",c:"Arcade",e:"🪙",t:"runner"},
- {n:"Mini Golf",c:"Sports",e:"⛳",t:"click"},
- {n:"Ninja Dash",c:"Action",e:"🥷",t:"runner"},
- {n:"Ocean Run",c:"Adventure",e:"🌊",t:"runner"},
- {n:"Rocket Race",c:"Racing",e:"🚀",t:"racer"},
- {n:"Candy Match",c:"Puzzle",e:"🍬",t:"click"},
- {n:"Color Switch",c:"Arcade",e:"🎨",t:"click"},
- {n:"Jungle Hop",c:"Adventure",e:"🌴",t:"jump"},
- {n:"Monster Tap",c:"Arcade",e:"👾",t:"click"},
- {n:"Fireball",c:"Action",e:"🔥",t:"space"},
- {n:"Star Collector",c:"Arcade",e:"⭐",t:"catch"},
- {n:"Ice Racer",c:"Racing",e:"🧊",t:"racer"},
- {n:"Box Escape",c:"Puzzle",e:"📦",t:"click"},
- {n:"Tower Builder",c:"Puzzle",e:"🏗️",t:"click"},
- {n:"Dino Run",c:"Adventure",e:"🦖",t:"runner"},
- {n:"Moon Jump",c:"Arcade",e:"🌙",t:"jump"},
- {n:"Ocean Defender",c:"Action",e:"🐠",t:"space"},
- {n:"Robot Run",c:"Action",e:"🤖",t:"runner"},
- {n:"Turbo Drive",c:"Racing",e:"🚗",t:"racer"},
- {n:"Gem Hunter",c:"Adventure",e:"💎",t:"catch"},
- {n:"Magic Blocks",c:"Puzzle",e:"✨",t:"click"},
- {n:"Alien Attack",c:"Action",e:"👽",t:"space"},
- {n:"Speed Bike",c:"Racing",e:"🏍️",t:"racer"},
- {n:"Duck Dash",c:"Arcade",e:"🦆",t:"runner"},
- {n:"Farm Match",c:"Puzzle",e:"🌾",t:"click"},
- {n:"Galaxy Run",c:"Adventure",e:"🌌",t:"runner"},
- {n:"Rocket Hop",c:"Arcade",e:"🛸",t:"jump"},
- {n:"Treasure Hunt",c:"Adventure",e:"🗺️",t:"catch"},
- {n:"Laser Zone",c:"Action",e:"🔫",t:"space"},
- {n:"Happy Ball",c:"Arcade",e:"⚽",t:"jump"},
- {n:"Snow Drive",c:"Racing",e:"❄️",t:"racer"},
- {n:"Fruit Match",c:"Puzzle",e:"🍓",t:"click"},
- {n:"Castle Run",c:"Adventure",e:"🏰",t:"runner"},
- {n:"Robot Arena",c:"Action",e:"🦾",t:"space"},
- {n:"Cloud Racer",c:"Racing",e:"☁️",t:"racer"},
- {n:"Lucky Star",c:"Arcade",e:"🌟",t:"catch"},
- {n:"Brain Blocks",c:"Puzzle",e:"🧠",t:"click"},
- {n:"Volcano Run",c:"Adventure",e:"🌋",t:"runner"},
- {n:"Space Hop",c:"Arcade",e:"🌠",t:"jump"},
- {n:"Pixel Fighter",c:"Action",e:"🥊",t:"space"},
- {n:"City Racer",c:"Racing",e:"🏙️",t:"racer"},
- {n:"Coin Catch",c:"Arcade",e:"💰",t:"catch"},
- {n:"Shape Match",c:"Puzzle",e:"🔷",t:"click"},
- {n:"Forest Runner",c:"Adventure",e:"🌲",t:"runner"},
- {n:"Cyber Attack",c:"Action",e:"💻",t:"space"},
- {n:"Speed Kart",c:"Racing",e:"🏁",t:"racer"},
- {n:"Star Jump",c:"Arcade",e:"⭐",t:"jump"},
- {n:"Color Crush",c:"Puzzle",e:"🌈",t:"click"},
- {n:"Desert Run",c:"Adventure",e:"🏜️",t:"runner"},
- {n:"Meteor Strike",c:"Action",e:"☄️",t:"space"},
- {n:"Water Racer",c:"Racing",e:"🚤",t:"racer"},
- {n:"Apple Catch",c:"Arcade",e:"🍏",t:"catch"},
- {n:"Number Puzzle",c:"Puzzle",e:"🔢",t:"click"},
- {n:"Island Run",c:"Adventure",e:"🏝️",t:"runner"},
- {n:"Dragon Attack",c:"Action",e:"🐉",t:"space"},
- {n:"Formula Mini",c:"Racing",e:"🏎️",t:"racer"},
- {n:"Ball Jump",c:"Arcade",e:"🏀",t:"jump"},
- {n:"Jewel Pop",c:"Puzzle",e:"💎",t:"click"},
- {n:"Mountain Run",c:"Adventure",e:"⛰️",t:"runner"},
- {n:"Space Pilot",c:"Action",e:"👨‍🚀",t:"space"},
- {n:"Bike Rush",c:"Racing",e:"🚲",t:"racer"},
- {n:"Star Catch",c:"Arcade",e:"🌟",t:"catch"},
- {n:"Logic Grid",c:"Puzzle",e:"🧩",t:"click"},
- {n:"Cave Runner",c:"Adventure",e:"🪨",t:"runner"},
- {n:"Alien Pilot",c:"Action",e:"👾",t:"space"},
- {n:"Night Racer",c:"Racing",e:"🌃",t:"racer"},
- {n:"Bubble Catch",c:"Arcade",e:"🫧",t:"catch"},
- {n:"Tile Master",c:"Puzzle",e:"⬛",t:"click"},
- {n:"River Run",c:"Adventure",e:"🏞️",t:"runner"},
- {n:"Robot Defender",c:"Action",e:"🤖",t:"space"},
- {n:"Street Racer",c:"Racing",e:"🚘",t:"racer"},
- {n:"Gem Catcher",c:"Arcade",e:"💎",t:"catch"},
- {n:"Memory Tiles",c:"Puzzle",e:"🧠",t:"click"},
- {n:"Temple Runway",c:"Adventure",e:"🗿",t:"runner"},
- {n:"Space Battle",c:"Action",e:"🌠",t:"space"},
- {n:"Road Racer",c:"Racing",e:"🛣️",t:"racer"},
- {n:"Candy Catch",c:"Arcade",e:"🍭",t:"catch"},
- {n:"Word Blocks",c:"Puzzle",e:"🔤",t:"click"},
- {n:"Safari Run",c:"Adventure",e:"🦁",t:"runner"},
- {n:"Rocket Defender",c:"Action",e:"🚀",t:"space"},
- {n:"Super Kart",c:"Racing",e:"🏎️",t:"racer"},
- {n:"Golden Catch",c:"Arcade",e:"🥇",t:"catch"},
- {n:"Math Tap",c:"Puzzle",e:"➕",t:"click"},
- {n:"Snow Run",c:"Adventure",e:"🏔️",t:"runner"},
- {n:"Cyber Pilot",c:"Action",e:"🛸",t:"space"},
- {n:"Highway Race",c:"Racing",e:"🚙",t:"racer"},
- {n:"Fruit Drop",c:"Arcade",e:"🍊",t:"catch"},
- {n:"Pattern Match",c:"Puzzle",e:"🔶",t:"click"},
- {n:"Volcano Hop",c:"Adventure",e:"🌋",t:"jump"},
- {n:"Meteor Pilot",c:"Action",e:"☄️",t:"space"},
- {n:"Turbo Kart",c:"Racing",e:"🏁",t:"racer"},
- {n:"Coin Hunter",c:"Arcade",e:"🪙",t:"catch"},
- {n:"Shape Tap",c:"Puzzle",e:"🔺",t:"click"},
- {n:"Fantasy Run",c:"Adventure",e:"🧙",t:"runner"},
- {n:"Galaxy Defender",c:"Action",e:"🌌",t:"space"},
- {n:"Ocean Racer",c:"Racing",e:"🌊",t:"racer"},
- {n:"Star Hunter",c:"Arcade",e:"⭐",t:"catch"},
- {n:"Quick Puzzle",c:"Puzzle",e:"⚡",t:"click"},
- {n:"Magic Forest",c:"Adventure",e:"🧚",t:"runner"},
- {n:"Cosmic Attack",c:"Action",e:"👽",t:"space"},
- {n:"Neon Highway",c:"Racing",e:"💜",t:"racer"},
- {n:"Diamond Catch",c:"Arcade",e:"💠",t:"catch"},
- {n:"Brain Tap",c:"Puzzle",e:"🧠",t:"click"},
- {n:"Hero Run",c:"Adventure",e:"🦸",t:"runner"},
- {n:"Galaxy Pilot",c:"Action",e:"🚀",t:"space"},
- {n:"Future Racer",c:"Racing",e:"🏎️",t:"racer"},
- {n:"Rainbow Catch",c:"Arcade",e:"🌈",t:"catch"},
- {n:"Final Blocks",c:"Puzzle",e:"🟦",t:"click"}
+const games=[
+
+["Metro Dash","Action","🏃","runner"],
+["Neon Racer","Racing","🏎️","racer"],
+["Block Blast","Puzzle","🧱","target"],
+["Fruit Catcher","Arcade","🍎","catch"],
+["Sky Jump","Arcade","☁️","jump"],
+["Space Defender","Action","🚀","space"],
+["Bubble Pop","Puzzle","🫧","target"],
+["Pixel Snake","Arcade","🐍","snake"],
+["Coin Rush","Arcade","🪙","catch"],
+["Mini Golf","Sports","⛳","target"],
+["Ninja Dash","Action","🥷","runner"],
+["Ocean Run","Adventure","🌊","runner"],
+["Rocket Race","Racing","🚀","racer"],
+["Candy Match","Puzzle","🍬","target"],
+["Color Switch","Arcade","🎨","target"],
+["Jungle Hop","Adventure","🌴","jump"],
+["Monster Tap","Arcade","👾","target"],
+["Fireball","Action","🔥","space"],
+["Star Collector","Arcade","⭐","catch"],
+["Ice Racer","Racing","🧊","racer"],
+["Box Escape","Puzzle","📦","target"],
+["Tower Builder","Puzzle","🏗️","target"],
+["Dino Run","Adventure","🦖","runner"],
+["Moon Jump","Arcade","🌙","jump"],
+["Ocean Defender","Action","🐠","space"],
+["Robot Run","Action","🤖","runner"],
+["Turbo Drive","Racing","🚗","racer"],
+["Gem Hunter","Adventure","💎","catch"],
+["Magic Blocks","Puzzle","✨","target"],
+["Alien Attack","Action","👽","space"],
+["Speed Bike","Racing","🏍️","racer"],
+["Duck Dash","Arcade","🦆","runner"],
+["Farm Match","Puzzle","🌾","target"],
+["Galaxy Run","Adventure","🌌","runner"],
+["Rocket Hop","Arcade","🛸","jump"],
+["Treasure Hunt","Adventure","🗺️","catch"],
+["Laser Zone","Action","🔴","space"],
+["Happy Ball","Arcade","⚽","jump"],
+["Snow Drive","Racing","❄️","racer"],
+["Fruit Match","Puzzle","🍓","target"],
+["Castle Run","Adventure","🏰","runner"],
+["Robot Arena","Action","🤖","space"],
+["Cloud Racer","Racing","☁️","racer"],
+["Lucky Star","Arcade","🌟","catch"],
+["Brain Blocks","Puzzle","🧠","target"],
+["Volcano Run","Adventure","🌋","runner"],
+["Space Hop","Arcade","🌠","jump"],
+["Pixel Fighter","Action","🥊","space"],
+["City Racer","Racing","🏙️","racer"],
+["Coin Catch","Arcade","💰","catch"],
+["Shape Match","Puzzle","🔷","target"],
+["Forest Runner","Adventure","🌲","runner"],
+["Cyber Attack","Action","💻","space"],
+["Speed Kart","Racing","🏁","racer"],
+["Star Jump","Arcade","⭐","jump"],
+["Color Crush","Puzzle","🌈","target"],
+["Desert Run","Adventure","🏜️","runner"],
+["Meteor Strike","Action","☄️","space"],
+["Water Racer","Racing","🚤","racer"],
+["Apple Catch","Arcade","🍏","catch"],
+["Number Puzzle","Puzzle","🔢","target"],
+["Island Run","Adventure","🏝️","runner"],
+["Dragon Attack","Action","🐉","space"],
+["Formula Mini","Racing","🏎️","racer"],
+["Ball Jump","Arcade","🏀","jump"],
+["Jewel Pop","Puzzle","💎","target"],
+["Mountain Run","Adventure","⛰️","runner"],
+["Space Pilot","Action","👨‍🚀","space"],
+["Bike Rush","Racing","🚲","racer"],
+["Star Catch","Arcade","🌟","catch"],
+["Logic Grid","Puzzle","🧩","target"],
+["Cave Runner","Adventure","🪨","runner"],
+["Alien Pilot","Action","👾","space"],
+["Night Racer","Racing","🌃","racer"],
+["Bubble Catch","Arcade","🫧","catch"],
+["Tile Master","Puzzle","⬛","target"],
+["River Run","Adventure","🏞️","runner"],
+["Robot Defender","Action","🤖","space"],
+["Street Racer","Racing","🚘","racer"],
+["Gem Catcher","Arcade","💎","catch"],
+["Memory Tiles","Puzzle","🧠","target"],
+["Temple Runway","Adventure","🗿","runner"],
+["Space Battle","Action","🌠","space"],
+["Road Racer","Racing","🛣️","racer"],
+["Candy Catch","Arcade","🍭","catch"],
+["Word Blocks","Puzzle","🔤","target"],
+["Safari Run","Adventure","🦁","runner"],
+["Rocket Defender","Action","🚀","space"],
+["Super Kart","Racing","🏎️","racer"],
+["Golden Catch","Arcade","🥇","catch"],
+["Math Tap","Puzzle","➕","target"],
+["Snow Run","Adventure","🏔️","runner"],
+["Cyber Pilot","Action","🛸","space"],
+["Highway Race","Racing","🚙","racer"],
+["Fruit Drop","Arcade","🍊","catch"],
+["Pattern Match","Puzzle","🔶","target"],
+["Volcano Hop","Adventure","🌋","jump"],
+["Meteor Pilot","Action","☄️","space"],
+["Turbo Kart","Racing","🏁","racer"],
+["Coin Hunter","Arcade","🪙","catch"],
+["Shape Tap","Puzzle","🔺","target"],
+["Fantasy Run","Adventure","🧙","runner"],
+["Galaxy Defender","Action","🌌","space"],
+["Ocean Racer","Racing","🌊","racer"],
+["Star Hunter","Arcade","⭐","catch"],
+["Quick Puzzle","Puzzle","⚡","target"],
+["Magic Forest","Adventure","🧚","runner"],
+["Cosmic Attack","Action","👽","space"],
+["Neon Highway","Racing","💜","racer"],
+["Diamond Catch","Arcade","💠","catch"],
+["Brain Tap","Puzzle","🧠","target"],
+["Hero Run","Adventure","🦸","runner"],
+["Galaxy Pilot","Action","🚀","space"],
+["Future Racer","Racing","🏎️","racer"],
+["Rainbow Catch","Arcade","🌈","catch"],
+["Final Blocks","Puzzle","🟦","target"]
+
 ];
 
-/* =========================================================
-   COLORS FOR GAME CARDS
-   ========================================================= */
-
-const backgrounds=[
- "#ffd6e7","#d9e7ff","#fff0b8","#d9f7e8",
- "#e7ddff","#d7f3ff","#ffe1cc","#e4e4ff"
-];
-
-/* =========================================================
+/* ================================
    STATE
-   ========================================================= */
+================================ */
 
-let activeCategory="All";
-let favorites=JSON.parse(localStorage.getItem("pzFavorites")||"[]");
-let showFavorites=false;
+let category="All";
+let favorites=JSON.parse(localStorage.getItem("playzoneFavorites")||"[]");
+let onlyFavorites=false;
 
-/* =========================================================
-   CATEGORY UI
-   ========================================================= */
+const gamesBox=document.getElementById("games");
+const search=document.getElementById("search");
+const count=document.getElementById("count");
+const noResults=document.getElementById("noResults");
 
-const categories=["All","Action","Arcade","Racing","Puzzle","Adventure","Sports"];
+/* ================================
+   CATEGORIES
+================================ */
 
-const categoryBox=document.getElementById("categories");
+const categoryNames=[
+"All",
+"Action",
+"Arcade",
+"Racing",
+"Puzzle",
+"Adventure",
+"Sports"
+];
 
-categories.forEach(cat=>{
-  const b=document.createElement("button");
-  b.className="cat"+(cat==="All"?" active":"");
-  b.textContent=cat;
-  b.onclick=()=>{
-    activeCategory=cat;
-    showFavorites=false;
-    document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");
-    renderGames();
-  };
-  categoryBox.appendChild(b);
+categoryNames.forEach(name=>{
+
+ const button=document.createElement("button");
+
+ button.className="category"+(name==="All"?" active":"");
+
+ button.textContent=name;
+
+ button.onclick=function(){
+
+  category=name;
+  onlyFavorites=false;
+
+  document.querySelectorAll(".category").forEach(b=>{
+   b.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  render();
+
+ };
+
+ document.getElementById("categories").appendChild(button);
+
 });
 
-/* =========================================================
-   RENDER GAMES
-   ========================================================= */
+/* ================================
+   RENDER
+================================ */
 
-function renderGames(){
+function render(){
 
-  const grid=document.getElementById("gamesGrid");
-  const search=document.getElementById("searchInput").value.toLowerCase().trim();
+ gamesBox.innerHTML="";
 
-  grid.innerHTML="";
+ const query=search.value.toLowerCase().trim();
 
-  let filtered=games.filter(g=>{
-    const categoryOK=activeCategory==="All" || g.c===activeCategory;
-    const searchOK=g.n.toLowerCase().includes(search) || g.c.toLowerCase().includes(search);
-    const favOK=!showFavorites || favorites.includes(g.n);
-    return categoryOK && searchOK && favOK;
-  });
+ let result=games.filter(g=>{
 
-  document.getElementById("gameCount").textContent=filtered.length+" games";
+  const name=g[0].toLowerCase();
+  const cat=g[1].toLowerCase();
 
-  document.getElementById("empty").style.display=filtered.length?"none":"block";
+  const matchCategory=
+   category==="All" || g[1]===category;
 
-  filtered.forEach((game,index)=>{
+  const matchSearch=
+   !query || name.includes(query) || cat.includes(query);
 
-    const originalIndex=games.indexOf(game);
+  const matchFavorite=
+   !onlyFavorites || favorites.includes(g[0]);
 
-    const card=document.createElement("article");
-    card.className="game-card";
+  return matchCategory && matchSearch && matchFavorite;
 
-    const bg=backgrounds[originalIndex%backgrounds.length];
+ });
 
-    card.innerHTML=`
-      <div class="thumb" style="background:${bg}">
-        <span>${game.e}</span>
-        <button class="fav ${favorites.includes(game.n)?"active":""}" 
-          onclick="toggleFavorite(event,'${escapeQuote(game.n)}')">
-          ${favorites.includes(game.n)?"♥":"♡"}
-        </button>
-      </div>
-      <div class="game-info">
-        <div class="game-name">${game.n}</div>
-        <div class="game-category">${game.c}</div>
-      </div>
-    `;
+ count.textContent=result.length+" games";
 
-    card.onclick=()=>openGame(originalIndex);
+ noResults.style.display=result.length===0?"block":"none";
 
-    grid.appendChild(card);
-  });
-}
+ result.forEach((g)=>{
 
-function escapeQuote(s){
-  return s.replace(/'/g,"\\'");
-}
+  const index=games.indexOf(g);
 
-function toggleFavorite(e,name){
-  e.stopPropagation();
+  const card=document.createElement("div");
+  card.className="game";
 
-  if(favorites.includes(name)){
-    favorites=favorites.filter(x=>x!==name);
-    toast("Removed from favorites");
+  const colors=[
+   "#ffd8e8",
+   "#dbe8ff",
+   "#fff0b8",
+   "#d8f4e5",
+   "#e7ddff",
+   "#d8f3ff",
+   "#ffe1cc",
+   "#e5e5ff"
+  ];
+
+  const thumb=document.createElement("div");
+  thumb.className="thumbnail";
+  thumb.style.background=colors[index%colors.length];
+  thumb.textContent=g[2];
+
+  const fav=document.createElement("button");
+  fav.className="favorite";
+
+  if(favorites.includes(g[0])){
+   fav.classList.add("on");
+   fav.textContent="♥";
   }else{
-    favorites.push(name);
-    toast("Added to favorites ❤️");
+   fav.textContent="♡";
   }
 
-  localStorage.setItem("pzFavorites",JSON.stringify(favorites));
-  renderGames();
+  fav.onclick=function(e){
+
+   e.stopPropagation();
+
+   toggleFavorite(g[0]);
+
+  };
+
+  thumb.appendChild(fav);
+
+  const info=document.createElement("div");
+  info.className="game-info";
+
+  const title=document.createElement("div");
+  title.className="game-name";
+  title.textContent=g[0];
+
+  const cat=document.createElement("div");
+  cat.className="game-category";
+  cat.textContent=g[1];
+
+  info.appendChild(title);
+  info.appendChild(cat);
+
+  card.appendChild(thumb);
+  card.appendChild(info);
+
+  card.onclick=function(){
+   openGame(index);
+  };
+
+  gamesBox.appendChild(card);
+
+ });
+
 }
 
-/* =========================================================
-   SEARCH
-   ========================================================= */
-
-document.getElementById("searchInput").addEventListener("input",renderGames);
-
-/* =========================================================
+/* ================================
    FAVORITES
-   ========================================================= */
+================================ */
 
-document.getElementById("favBtn").onclick=()=>{
+function toggleFavorite(name){
 
-  showFavorites=!showFavorites;
+ if(favorites.includes(name)){
+  favorites=favorites.filter(x=>x!==name);
+ }else{
+  favorites.push(name);
+ }
 
-  if(showFavorites){
-    activeCategory="All";
-    document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));
-    document.querySelector(".cat").classList.add("active");
-    toast("Showing your favorites ❤️");
-  }else{
-    toast("Showing all games");
-  }
+ localStorage.setItem(
+  "playzoneFavorites",
+  JSON.stringify(favorites)
+ );
 
-  renderGames();
+ render();
+}
+
+document.getElementById("favoritesButton").onclick=function(){
+
+ onlyFavorites=!onlyFavorites;
+
+ if(onlyFavorites){
+  category="All";
+  document.querySelectorAll(".category").forEach(b=>{
+   b.classList.remove("active");
+  });
+  document.querySelector(".category").classList.add("active");
+ }
+
+ render();
+
 };
 
-/* =========================================================
+/* ================================
+   SEARCH
+================================ */
+
+search.addEventListener("input",render);
+
+/* ================================
    RANDOM
-   ========================================================= */
+================================ */
 
-document.getElementById("randomBtn").onclick=()=>{
-  const random=Math.floor(Math.random()*games.length);
-  openGame(random);
+document.getElementById("random").onclick=function(){
+
+ const index=Math.floor(Math.random()*games.length);
+
+ openGame(index);
+
 };
 
-/* =========================================================
-   GAME ENGINE
-   ========================================================= */
+document.getElementById("featured").onclick=function(){
+ openGame(0);
+};
 
-const modal=document.getElementById("gameModal");
-const canvas=document.getElementById("gameCanvas");
+/* ================================
+   GAME ENGINE
+================================ */
+
+const modal=document.getElementById("modal");
+const canvas=document.getElementById("canvas");
 const ctx=canvas.getContext("2d");
 
-let currentGame=null;
+let current=null;
 let animation=null;
-let gameState={};
+
+let score=0;
+let playerX=480;
+let playerY=450;
+let objects=[];
+let target=null;
+let snake=[];
+let food=null;
+let direction={x:1,y:0};
+let gameOver=false;
+
+const keys={
+ left:false,
+ right:false
+};
 
 function openGame(index){
 
-  currentGame=games[index];
+ current=games[index];
 
-  document.getElementById("gameTitle").textContent=currentGame.n;
+ document.getElementById("gameTitle").textContent=current[0];
 
-  modal.classList.add("show");
-  document.body.style.overflow="hidden";
+ modal.classList.add("open");
 
-  resetGame();
+ document.body.style.overflow="hidden";
+
+ startGame();
+
 }
 
 function closeGame(){
 
-  if(animation)cancelAnimationFrame(animation);
+ if(animation){
+  cancelAnimationFrame(animation);
+ }
 
-  modal.classList.remove("show");
-  document.body.style.overflow="";
+ modal.classList.remove("open");
 
-  currentGame=null;
+ document.body.style.overflow="";
+
+ current=null;
+
 }
 
-function fullscreenGame(){
+document.getElementById("back").onclick=closeGame;
 
-  const area=document.querySelector(".game-area");
+document.getElementById("fullscreen").onclick=function(){
 
-  if(area.requestFullscreen){
-    area.requestFullscreen();
+ const area=document.querySelector(".game-area");
+
+ if(area.requestFullscreen){
+  area.requestFullscreen();
+ }
+
+};
+
+/* ================================
+   START GAME
+================================ */
+
+function startGame(){
+
+ if(animation){
+  cancelAnimationFrame(animation);
+ }
+
+ score=0;
+ playerX=480;
+ playerY=450;
+ objects=[];
+ target=null;
+ snake=[];
+ food=null;
+ direction={x:1,y:0};
+ gameOver=false;
+
+ if(current[3]==="target"){
+  makeTarget();
+ }
+
+ if(current[3]==="catch"){
+  for(let i=0;i<8;i++){
+   objects.push({
+    x:Math.random()*900+30,
+    y:-Math.random()*500,
+    speed:2+Math.random()*3
+   });
   }
+ }
+
+ if(current[3]==="space"){
+  for(let i=0;i<8;i++){
+   objects.push({
+    x:Math.random()*900+30,
+    y:-Math.random()*500,
+    speed:2+Math.random()*2
+   });
+  }
+ }
+
+ if(current[3]==="snake"){
+
+  snake=[
+   {x:480,y:280},
+   {x:460,y:280},
+   {x:440,y:280}
+  ];
+
+  food=makeFood();
+
+ }
+
+ animation=requestAnimationFrame(gameLoop);
+
 }
 
-function resetGame(){
+/* ================================
+   LOOP
+================================ */
 
-  if(animation)cancelAnimationFrame(animation);
+let lastTime=0;
 
-  gameState={
-    score:0,
-    lives:3,
-    time:0,
-    x:canvas.width/2,
-    y:canvas.height-80,
-    vx:0,
-    vy:0,
-    objects:[],
-    target:null,
-    started:false,
-    over:false,
-    last:performance.now()
-  };
+function gameLoop(time){
 
-  setupGame();
+ const delta=Math.min((time-lastTime)/16.67,3);
 
-  animation=requestAnimationFrame(loop);
+ lastTime=time;
+
+ update(delta);
+ draw();
+
+ animation=requestAnimationFrame(gameLoop);
+
 }
 
-/* ==============
+/* ================================
+   UPDATE
+================================ */
+
+function update(dt){
+
+ if(gameOver)return;
+
+ const type=current[3];
+
+ if(type==="runner")runner(dt);
+ if(type==="racer")racer(dt);
+ if(type==="catch")catchGame(dt);
+ if(type==="space")space(dt);
+ if(type==="jump")jump(dt);
+ if(type==="snake")snakeGame(dt);
+
+}
+
+/* ================================
+   RUNNER
+================================ */
+
+function runner(dt){
+
+ if(keys.left)playerX-=7*dt;
+ if(keys.right)playerX+=7*dt;
+
+ playerX=Math.max(40,Math.min(920,playerX));
+
+ if(Math.random()<.025*dt){
+
+  objects.push({
+   x:40+Math.random()*880,
+   y:-50,
+   speed:3+Math.random()*3
+  });
+
+ }
+
+ objects.forEach(o=>{
+
+  o.y+=o.speed*dt;
+
+  if(
+   Math.abs(o.x-playerX)<38 &&
+   Math.abs(o.y-playerY)<45
+  ){
+   endGame();
+  }
+
+  if(o.y>590){
+
+   o.y=-50;
+   o.x=40+Math.random()*880;
+   score++;
+
+  }
+
+ });
+
+}
+
+/* ================================
+   RACER
+================================ */
+
+function racer(dt){
+
+ if(keys.left)playerX-=8*dt;
+ if(keys.right)playerX+=8*dt;
+
+ playerX=Math.max(150,Math.min(810,playerX));
+
+ if(Math.random()<.025*dt){
+
+  objects.push({
+   x:140+Math.random()*680,
+   y:-80,
+   speed:5+Math.random()*4
+  });
+
+ }
+
+ objects.forEach(o=>{
+
+  o.y+=o.speed*dt;
+
+  if(
+   Math.abs(o.x-playerX)<50 &&
+   Math.abs(o.y-playerY)<65
+  ){
+   endGame();
+  }
+
+  if(o.y>620){
+
+   o.y=-80;
+   o.x=140+Math.random()*680;
+   score++;
+
+  }
+
+ });
+
+}
+
+/* ================================
+   CATCH
+================================ */
+
+function catchGame(dt){
+
+ if(keys.left)playerX-=8*dt;
+ if(keys.right)playerX+=8*dt;
+
+ playerX=Math.max(40,Math.min(920,playerX));
+
+ objects.forEach(o=>{
+
+  o.y+=o.speed*dt;
+
+  if(o.y>590){
+
+   o.y=-30;
+   o.x=30+Math.random()*900;
+
+  }
+
+  if(
+   Math.abs(o.x-playerX)<45 &&
+   Math.abs(o.y-playerY)<40
+  ){
+
+   score++;
+
+   o.y=-30;
+   o.x=30+Math.random()*900;
+
+  }
+
+ });
+
+}
+
+/* ================================
+   SPACE
+================================ */
+
+function space(dt){
+
+ if(keys.left)playerX-=8*dt;
+ if(keys.right)playerX+=8*dt;
+
+ playerX=Math.max(40,Math.min(920,playerX));
+
+ objects.forEach(o=>{
+
+  o.y+=o.speed*dt;
+
+  if(o.y>590){
+
+   o.y=-40;
+   o.x=30+Math.random()*900;
+
+  }
+
+  if(
+   Math.abs(o.x-playerX)<38 &&
+   Math.abs(o.y-playerY)<38
+  ){
+   endGame();
+  }
+
+ });
+
+}
+
+/* ================================
+   JUMP
+================================ */
+
+let velocityY=0;
+
+function jump(dt){
+
+ velocityY+=.5*dt;
+ playerY+=velocityY*dt;
+
+ if(playerY>=450){
+
+  playerY=450;
+  velocityY=-11;
+  score++;
+
+ }
+
+ if(keys.left)playerX-=6*dt;
+ if(keys.right)playerX+=6*dt;
+
+ playerX=Math.max(40,Math.min(920,playerX));
+
+}
+
+/* ==
